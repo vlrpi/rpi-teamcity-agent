@@ -3,7 +3,7 @@ LABEL maintainer="Vova Lantsov"
 LABEL contact_email="contact@vova-lantsov.dev"
 LABEL telegram="https://t.me/vova_lantsov"
 
-ADD buildAgent.properties TeamCity/buildAgent/conf/
+ADD ../../../buildAgent.properties TeamCity/buildAgent/conf/
 
 RUN apt-get install -y git curl zlib1g liblttng-ust0 apt-transport-https gnupg-agent software-properties-common
 RUN apt-get upgrade -y
