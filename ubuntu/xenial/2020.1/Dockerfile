@@ -14,7 +14,7 @@ RUN add-apt-repository \
    "deb [arch=arm64] https://download.docker.com/linux/ubuntu xenial stable"
 
 RUN apt-get update
-RUN apt-get install docker-ce docker-ce-cli containerd.io
+RUN apt-get install -y docker-ce docker-ce-cli containerd.io
 
 RUN apt-get upgrade -y
 
