@@ -11,7 +11,7 @@ RUN apt-get upgrade -y
 RUN curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -
 
 RUN add-apt-repository \
-   "deb [arch=arm64] https://download.docker.com/linux/debian buster stable"
+   "deb [arch=arm64] https://download.docker.com/linux/debian bullseye stable"
 
 RUN apt-get update
 RUN apt-get install -y docker-ce docker-ce-cli containerd.io
