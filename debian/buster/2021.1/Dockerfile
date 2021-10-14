@@ -1,4 +1,7 @@
-FROM vlrpi/rpi-teamcity-server:debian-buster-2021.1
+﻿ARG BASE_ARCH
+ARG DOCKER_ARCH
+
+FROM vlrpi/teamcity-server-${BASE_ARCH}:debian-buster-2021.1
 LABEL maintainer="Vova Lantsov"
 LABEL contact_email="contact@vova-lantsov.dev"
 LABEL telegram="https://t.me/vova_lantsov"
@@ -11,15 +14,13 @@ RUN apt-get upgrade -y
 RUN curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -
 
 RUN add-apt-repository \
-   "deb [arch=arm64] https://download.docker.com/linux/debian buster stable"
+    "deb [arch=${DOCKER_ARCH}] https://download.docker.com/linux/debian buster stable"
 
 RUN apt-get update
 RUN apt-get install -y docker-ce docker-ce-cli containerd.io
 
-RUN apt-get upgrade -y
-
-RUN curl -L "https://github.com/linuxserver/docker-docker-compose/releases/download/1.29.2-ls39/docker-compose-arm64" -o /usr/bin/docker-compose
+RUN curl -L "https://github.com/linuxserver/docker-docker-compose/releases/download/1.29.2-ls51/docker-compose-${DOCKER_ARCH}" -o /usr/bin/docker-compose
 RUN chmod +x /usr/bin/docker-compose
 
 EXPOSE 8111 9090
-ENTRYPOINT TeamCity/buildAgent/bin/agent.sh run
+ENTRYPOINT ["TeamCity/buildAgent/bin/agent.sh","run"]
