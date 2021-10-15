@@ -1,10 +1,11 @@
 ﻿ARG BASE_ARCH
-ARG DOCKER_ARCH
 
 FROM vlrpi/teamcity-server-${BASE_ARCH}:ubuntu-xenial-2021.1
 LABEL maintainer="Vova Lantsov"
 LABEL contact_email="contact@vova-lantsov.dev"
 LABEL telegram="https://t.me/vova_lantsov"
+
+ARG DOCKER_ARCH
 
 ADD buildAgent.properties TeamCity/buildAgent/conf/
 
