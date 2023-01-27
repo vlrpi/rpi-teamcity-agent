@@ -1,6 +1,6 @@
 ﻿ARG BASE_ARCH
 
-FROM vlrpi/teamcity-server-${BASE_ARCH}:ubuntu-xenial-2021.2
+FROM vlrpi/teamcity-server-${BASE_ARCH}:ubuntu-focal-2022.04
 LABEL maintainer="Vova Lantsov"
 LABEL contact_email="contact@vova-lantsov.dev"
 LABEL telegram="https://t.me/vova_lantsov"
@@ -15,7 +15,7 @@ RUN apt-get upgrade -y
 RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 
 RUN add-apt-repository \
-    "deb [arch=${DOCKER_ARCH}] https://download.docker.com/linux/ubuntu xenial stable"
+    "deb [arch=${DOCKER_ARCH}] https://download.docker.com/linux/ubuntu focal stable"
 
 RUN apt-get update
 RUN apt-get install -y docker-ce docker-ce-cli containerd.io

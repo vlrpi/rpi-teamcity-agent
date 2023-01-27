@@ -1,6 +1,6 @@
 ﻿ARG BASE_ARCH
 
-FROM vlrpi/teamcity-server-${BASE_ARCH}:ubuntu-xenial-2021.2
+FROM vlrpi/teamcity-server-${BASE_ARCH}:debian-buster-2022.04
 LABEL maintainer="Vova Lantsov"
 LABEL contact_email="contact@vova-lantsov.dev"
 LABEL telegram="https://t.me/vova_lantsov"
@@ -12,10 +12,10 @@ ADD buildAgent.properties TeamCity/buildAgent/conf/
 RUN apt-get install -y git curl zlib1g liblttng-ust0 apt-transport-https gnupg-agent software-properties-common
 RUN apt-get upgrade -y
 
-RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+RUN curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -
 
 RUN add-apt-repository \
-    "deb [arch=${DOCKER_ARCH}] https://download.docker.com/linux/ubuntu xenial stable"
+    "deb [arch=${DOCKER_ARCH}] https://download.docker.com/linux/debian buster stable"
 
 RUN apt-get update
 RUN apt-get install -y docker-ce docker-ce-cli containerd.io

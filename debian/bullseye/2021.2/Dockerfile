@@ -20,7 +20,7 @@ RUN add-apt-repository \
 RUN apt-get update
 RUN apt-get install -y docker-ce docker-ce-cli containerd.io
 
-RUN curl -L "https://github.com/linuxserver/docker-docker-compose/releases/download/1.29.2-ls51/docker-compose-${DOCKER_ARCH}" -o /usr/bin/docker-compose
+RUN curl -L "https://github.com/linuxserver/docker-docker-compose/releases/download/1.29.2-ls53/docker-compose-${DOCKER_ARCH}" -o /usr/bin/docker-compose
 RUN chmod +x /usr/bin/docker-compose
 
 EXPOSE 8111 9090

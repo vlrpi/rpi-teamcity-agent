@@ -1,6 +1,6 @@
 ﻿ARG BASE_ARCH
 
-FROM vlrpi/teamcity-server-${BASE_ARCH}:ubuntu-xenial-2021.2
+FROM vlrpi/teamcity-server-${BASE_ARCH}:ubuntu-xenial-2022.10
 LABEL maintainer="Vova Lantsov"
 LABEL contact_email="contact@vova-lantsov.dev"
 LABEL telegram="https://t.me/vova_lantsov"
