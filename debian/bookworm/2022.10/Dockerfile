@@ -11,19 +11,18 @@ ADD buildAgent.properties TeamCity/buildAgent/conf/
 
 RUN [ "cross-build-start" ]
 
-RUN apt-get install -y git curl zlib1g apt-transport-https gnupg-agent software-properties-common liblttng-ust1
-RUN apt-get upgrade -y
+RUN apt-get install -y ca-certificates curl gnupg git zlib1g apt-transport-https software-properties-common liblttng-ust1
 
-RUN curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -
+RUN install -m 0755 -d /etc/apt/keyrings
+RUN curl -fsSL https://download.docker.com/linux/debian/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+RUN chmod a+r /etc/apt/keyrings/docker.gpg
 
-RUN add-apt-repository \
-    "deb [arch=${DOCKER_ARCH}] https://download.docker.com/linux/debian bookworm stable"
+RUN echo "deb [arch=${DOCKER_ARCH} signed-by=/etc/apt/keyrings/docker.gpg] \
+    https://download.docker.com/linux/debian bookworm stable" | \
+    tee /etc/apt/sources.list.d/docker.list > /dev/null
 
 RUN apt-get update
-RUN apt-get install -y docker-ce docker-ce-cli containerd.io
-
-RUN curl -L "https://github.com/docker/compose/releases/download/v2.20.2/docker-compose-linux-${DOCKER_ARCH}" -o /usr/bin/docker-compose
-RUN chmod +x /usr/bin/docker-compose
+RUN apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
 RUN [ "cross-build-end" ]
 
