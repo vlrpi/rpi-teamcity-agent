@@ -1,6 +1,6 @@
 ﻿ARG BASE_ARCH
 
-FROM vlrpi/teamcity-server-${BASE_ARCH}:ubuntu-focal-2022.10
+FROM vlrpi/teamcity-server-${BASE_ARCH}:ubuntu-focal-2023.05
 LABEL maintainer="Vova Lantsov"
 LABEL contact_email="contact@vova-lantsov.dev"
 LABEL telegram="https://t.me/vova_lantsov"

@@ -1,6 +1,6 @@
 ﻿ARG BASE_ARCH
 
-FROM vlrpi/teamcity-server-${BASE_ARCH}:ubuntu-focal-2022.10
+FROM vlrpi/teamcity-server-${BASE_ARCH}:debian-bookworm-2022.10
 LABEL maintainer="Vova Lantsov"
 LABEL contact_email="contact@vova-lantsov.dev"
 LABEL telegram="https://t.me/vova_lantsov"
@@ -14,10 +14,10 @@ RUN [ "cross-build-start" ]
 RUN apt-get install -y git curl zlib1g liblttng-ust0 apt-transport-https gnupg-agent software-properties-common
 RUN apt-get upgrade -y
 
-RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+RUN curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -
 
 RUN add-apt-repository \
-    "deb [arch=${DOCKER_ARCH}] https://download.docker.com/linux/ubuntu focal stable"
+    "deb [arch=${DOCKER_ARCH}] https://download.docker.com/linux/debian bookworm stable"
 
 RUN apt-get update
 RUN apt-get install -y docker-ce docker-ce-cli containerd.io

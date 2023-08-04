@@ -9,6 +9,8 @@ ARG DOCKER_ARCH
 
 ADD buildAgent.properties TeamCity/buildAgent/conf/
 
+RUN [ "cross-build-start" ]
+
 RUN apt-get install -y git curl zlib1g liblttng-ust0 apt-transport-https gnupg-agent software-properties-common
 RUN apt-get upgrade -y
 
@@ -20,8 +22,10 @@ RUN add-apt-repository \
 RUN apt-get update
 RUN apt-get install -y docker-ce docker-ce-cli containerd.io
 
-RUN curl -L "https://github.com/linuxserver/docker-docker-compose/releases/download/1.29.2-ls53/docker-compose-${DOCKER_ARCH}" -o /usr/bin/docker-compose
+RUN curl -L "https://github.com/docker/compose/releases/download/v2.20.2/docker-compose-linux-${DOCKER_ARCH}" -o /usr/bin/docker-compose
 RUN chmod +x /usr/bin/docker-compose
+
+RUN [ "cross-build-end" ]
 
 EXPOSE 8111 9090
 ENTRYPOINT ["TeamCity/buildAgent/bin/agent.sh","run"]
