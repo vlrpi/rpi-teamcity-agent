@@ -11,7 +11,7 @@ ADD buildAgent.properties TeamCity/buildAgent/conf/
 
 RUN [ "cross-build-start" ]
 
-RUN apt-get install -y git curl zlib1g liblttng-ust0 apt-transport-https gnupg-agent software-properties-common
+RUN apt-get install -y git curl zlib1g apt-transport-https gnupg-agent software-properties-common liblttng-ust0
 RUN apt-get upgrade -y
 
 RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
